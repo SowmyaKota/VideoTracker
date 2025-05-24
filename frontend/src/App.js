@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import VideoPlayer from './Components/VideoPlayer';
 
 function App() {
+  // In a real app, these would come from routing/props
+  const userId = 'user123';
+  const videoId = 'lecture001';
+  const videoSrc = 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4';
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Lecture Video Player</h1>
+        <p>Advanced Progress Tracking System</p>
       </header>
+      
+      <main className="App-main">
+        <VideoPlayer 
+          videoId={videoId}
+          userId={userId}
+          videoSrc={videoSrc}
+        />
+      </main>
     </div>
   );
 }

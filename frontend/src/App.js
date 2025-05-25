@@ -1,27 +1,42 @@
 import React from 'react';
-import './App.css';
 import VideoPlayer from './Components/VideoPlayer';
 
+
+const videos = [
+  {
+    id: 'video1',
+    title: 'Sample Video 1',
+    src: '/sample-10s.mp4',
+  },
+  {
+    id: 'video2',
+    title: 'Sample Video 2',
+    src: '/sample-20s.mp4',
+  },
+  {
+    id: 'video3',
+    title: 'Sample Video 3',
+    src: '/sample-30s.mp4',
+  },
+];
+
 function App() {
-  // In a real app, these would come from routing/props
+  // For demo, use static userId
   const userId = 'user123';
-  const videoId = 'lecture001';
-  const videoSrc = 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4';
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Lecture Video Player</h1>
-        <p>Advanced Progress Tracking System</p>
-      </header>
-      
-      <main className="App-main">
-        <VideoPlayer 
-          videoId={videoId}
-          userId={userId}
-          videoSrc={videoSrc}
-        />
-      </main>
+    <div style={{ maxWidth: 700, margin: 'auto', marginTop: 40 }}>
+      <h2>Lecture Video Progress Tracker</h2>
+      {videos.map(video => (
+        <div key={video.id} style={{ marginBottom: 40 }}>
+          <h3>{video.title}</h3>
+          <VideoPlayer
+            userId={userId}
+            videoId={video.id}
+            videoSrc={video.src}
+          />
+        </div>
+      ))}
     </div>
   );
 }

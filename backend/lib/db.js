@@ -1,24 +1,14 @@
-let progressData = new Map();
+// Simple in-memory DB for demo (replace with real DB in production)
+const db = {};
 
-export async function getProgress(userId, videoId) {
-  const key = `${userId}-${videoId}`;
-  return progressData.get(key) || {
-    userId,
-    videoId,
-    watchedIntervals: [],
-    progressPercentage: 0,
-    currentTime: 0,
-    lastWatched: null
+export function getProgress(userId, videoId) {
+  return db[`${userId}_${videoId}`] || {
+    intervals: [],
+    lastPosition: 0,
+    progress: 0,
   };
 }
 
-export async function updateProgress(userId, videoId, data) {
-  const key = `${userId}-${videoId}`;
-  const progress = {
-    userId,
-    videoId,
-    ...data
-  };
-  progressData.set(key, progress);
-  return progress;
+export function saveProgress(userId, videoId, intervals, lastPosition, progress) {
+  db[`${userId}_${videoId}`] = { intervals, lastPosition, progress };
 }
